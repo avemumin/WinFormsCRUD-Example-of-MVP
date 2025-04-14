@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using WinFormsCRUD.Helpers;
 using WinFormsCRUD.Models;
 
 namespace WinFormsCRUD.Repositories
@@ -31,7 +32,8 @@ namespace WinFormsCRUD.Repositories
     public IEnumerable<PetModel> GetAll()
     {
       List<PetModel> list = new();
-      string sql = "Select Pet_Id as Id,Pet_Name as Name,Pet_Type as Type,Pet_Colour as Color from dbo.Pet";
+      string sql = DapperSelectionHelper.Basic();
+        //"Select Pet_Id as Id,Pet_Name as Name,Pet_Type as Type,Pet_Colour as Color from dbo.Pet";
       using var conn = new SqlConnection(_connString);
       list = conn.Query<PetModel>(sql).ToList();
       if (list is null)

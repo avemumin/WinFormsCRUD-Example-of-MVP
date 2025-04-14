@@ -1,3 +1,4 @@
+using System.Configuration;
 using WinFormsCRUD.Models;
 using WinFormsCRUD.Presenters;
 using WinFormsCRUD.Repositories;
@@ -16,10 +17,12 @@ namespace WinFormsCRUD
       // To customize application configuration such as set high DPI settings or default font,
       // see https://aka.ms/applicationconfiguration.
       ApplicationConfiguration.Initialize();
+      var connection = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
       IPetView view = new PetView();
-      IPetRepository repository = new PetRepository("Server=.;Database=MVPTry;User Id=sa;Password=5432!qaz;TrustServerCertificate=True;");
+      IPetRepository repository = new PetRepository(connection);
       new PetPresenter(view, repository);
       Application.Run((Form)view);
     }
   }
 }
+//"Server=.;Database=MVPTry;User Id=sa;Password=5432!qaz;TrustServerCertificate=True;"
