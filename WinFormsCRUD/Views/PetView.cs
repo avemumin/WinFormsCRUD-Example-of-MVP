@@ -10,7 +10,7 @@
     {
       InitializeComponent();
       RaiseViewEvents();
-     // tabControl1.TabPages.Remove(tabPagePetDetail);
+      tabControl1.TabPages.Remove(this.tabPage2);
     }
 
     private void RaiseViewEvents()

@@ -2,6 +2,9 @@
 
 namespace WinFormsCRUD.Helpers
 {
+  /// <summary>
+  /// The extension's methods
+  /// </summary>
   public static class PetModelExtension
   {
     public static IEnumerable<PetModel>? FilterByFields(this IEnumerable<PetModel> collection, string filter)

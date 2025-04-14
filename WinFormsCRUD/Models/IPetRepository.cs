@@ -1,5 +1,8 @@
 ﻿namespace WinFormsCRUD.Models
 {
+  /// <summary>
+  /// The repository interface
+  /// </summary>
   public interface IPetRepository
   {
     void Add(PetModel model);

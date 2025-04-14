@@ -7,7 +7,6 @@ namespace WinFormsCRUD.Presenters
     private IPetView view;
     private IPetRepository repository;
     private BindingSource petsBindingSource;
-
     private IEnumerable<PetModel> petList;
     /// <summary>
     /// Constructor with dependencies
@@ -20,20 +19,24 @@ namespace WinFormsCRUD.Presenters
       this.view = view;
       this.repository = repository;
       //Event's
+      EventsSubscribtion();
+      //Set pets binding source
+      this.view.SetPetListBindingSource(petsBindingSource);
+      LoadAllPetList();
+    }
+
+    /// <summary>
+    /// The event's subscribtion
+    /// </summary>
+    private void EventsSubscribtion()
+    {
       this.view.SearchEvent += SearchPet;
       this.view.AddNewEvent += AddNewPet;
       this.view.EditEvent += EditPet;
       this.view.DeleteEvent += DeletePet;
       this.view.SaveEvent += SavePet;
       this.view.CancelEvent += CancelAction;
-      //Set pets binding source
-      this.view.SetPetListBindingSource(petsBindingSource);
-
-      LoadAllPetList();
-      //show view
-      //this.view.Show();
     }
-
     private void LoadAllPetList()
     {
       petList = repository.GetAll();

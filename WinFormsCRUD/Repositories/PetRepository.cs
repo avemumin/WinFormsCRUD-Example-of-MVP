@@ -33,7 +33,6 @@ namespace WinFormsCRUD.Repositories
     {
       List<PetModel> list = new();
       string sql = DapperSelectionHelper.Basic();
-        //"Select Pet_Id as Id,Pet_Name as Name,Pet_Type as Type,Pet_Colour as Color from dbo.Pet";
       using var conn = new SqlConnection(_connString);
       list = conn.Query<PetModel>(sql).ToList();
       if (list is null)

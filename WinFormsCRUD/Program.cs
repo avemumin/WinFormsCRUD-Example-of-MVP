@@ -17,12 +17,14 @@ namespace WinFormsCRUD
       // To customize application configuration such as set high DPI settings or default font,
       // see https://aka.ms/applicationconfiguration.
       ApplicationConfiguration.Initialize();
-      var connection = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
       IPetView view = new PetView();
-      IPetRepository repository = new PetRepository(connection);
+      IPetRepository repository = new PetRepository(SetConnString());
       new PetPresenter(view, repository);
       Application.Run((Form)view);
     }
+
+    private static string SetConnString()
+    => ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
+
   }
 }
-//"Server=.;Database=MVPTry;User Id=sa;Password=5432!qaz;TrustServerCertificate=True;"

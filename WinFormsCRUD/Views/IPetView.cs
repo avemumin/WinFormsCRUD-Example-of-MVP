@@ -1,5 +1,8 @@
 ﻿namespace WinFormsCRUD.Views
 {
+  /// <summary>
+  /// The IPetView interface definition
+  /// </summary>
   public interface IPetView
   {
     string PetId { get; set; }
@@ -23,6 +26,5 @@
     event EventHandler CancelEvent;
 
     void SetPetListBindingSource(BindingSource petList);
-    void Show();
   }
 }
