@@ -17,9 +17,13 @@ namespace WinFormsCRUD
       // To customize application configuration such as set high DPI settings or default font,
       // see https://aka.ms/applicationconfiguration.
       ApplicationConfiguration.Initialize();
+
+      #region Dependency Injection
       IPetView view = new PetView();
       IPetRepository repository = new PetRepository(SetConnString());
       new PetPresenter(view, repository);
+      #endregion
+
       Application.Run((Form)view);
     }
 

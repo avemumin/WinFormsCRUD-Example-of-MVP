@@ -5,7 +5,6 @@
     public string message;
     public bool isSuccessfull;
     private bool isEdit;
-
     public PetView()
     {
       InitializeComponent();
@@ -26,6 +25,10 @@
           SearchEvent?.Invoke(sender, e);
         }
       };
+      btnEdit.Click += (s, e) =>
+      {
+        EditEvent?.Invoke(s, e);
+      };
     }
     public string PetId { get => txtPetId.Text; set => txtPetId.Text = value; }
     public string PetName { get => txtPetName.Text; set => txtPetName.Text = value; }
@@ -40,8 +43,8 @@
     public event EventHandler AddNewEvent;
     public event EventHandler EditEvent;
     public event EventHandler DeleteEvent;
-    public event EventHandler SaveEvent;
-    public event EventHandler CancelEvent;
+    //public event EventHandler SaveEvent;
+    //public event EventHandler CancelEvent;
 
     public void SetPetListBindingSource(BindingSource petList)
     {

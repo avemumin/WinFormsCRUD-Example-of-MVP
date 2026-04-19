@@ -2,6 +2,9 @@
 using WinFormsCRUD.Views;
 namespace WinFormsCRUD.Presenters
 {
+  /// <summary>
+  /// The pet presenter class.
+  /// </summary>
   public class PetPresenter
   {
     private IPetView view;
@@ -15,12 +18,11 @@ namespace WinFormsCRUD.Presenters
     /// <param name="repository">The repository</param>
     public PetPresenter(IPetView view, IPetRepository repository)
     {
-      this.petsBindingSource = new BindingSource();
       this.view = view;
       this.repository = repository;
       //Event's
       EventsSubscribtion();
-      //Set pets binding source
+      this.petsBindingSource = new BindingSource();
       this.view.SetPetListBindingSource(petsBindingSource);
       LoadAllPetList();
     }
@@ -34,8 +36,8 @@ namespace WinFormsCRUD.Presenters
       this.view.AddNewEvent += AddNewPet;
       this.view.EditEvent += EditPet;
       this.view.DeleteEvent += DeletePet;
-      this.view.SaveEvent += SavePet;
-      this.view.CancelEvent += CancelAction;
+      //this.view.SaveEvent += SavePet;
+     // this.view.CancelEvent += CancelAction;
     }
     private void LoadAllPetList()
     {
@@ -43,15 +45,15 @@ namespace WinFormsCRUD.Presenters
       petsBindingSource.DataSource = petList;
     }
 
-    private void CancelAction(object? sender, EventArgs e)
-    {
-      throw new NotImplementedException();
-    }
+    //private void CancelAction(object? sender, EventArgs e)
+    //{
+    //  throw new NotImplementedException();
+    //}
 
-    private void SavePet(object? sender, EventArgs e)
-    {
-      throw new NotImplementedException();
-    }
+    //private void SavePet(object? sender, EventArgs e)
+    //{
+    //  throw new NotImplementedException();
+    //}
 
     private void DeletePet(object? sender, EventArgs e)
     {
@@ -60,7 +62,12 @@ namespace WinFormsCRUD.Presenters
 
     private void EditPet(object? sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      //var marked  =  dgPetListView.CurrentRow.Cells["Id"].Value
+      var pet = petList.FirstOrDefault();
+      IPetDetailsView dView = new PetDetailsView();
+      new PetDetailsPresenter(dView, pet);
+      dView.Show();
+
     }
 
     private void AddNewPet(object? sender, EventArgs e)

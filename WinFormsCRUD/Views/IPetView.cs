@@ -22,9 +22,8 @@
     event EventHandler EditEvent;
     event EventHandler DeleteEvent;
 
-    event EventHandler SaveEvent;
-    event EventHandler CancelEvent;
-
+    // event EventHandler SaveEvent;
+    // event EventHandler CancelEvent;
     void SetPetListBindingSource(BindingSource petList);
   }
 }
